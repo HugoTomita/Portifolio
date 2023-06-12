@@ -1,0 +1,28 @@
+###################################################
+# SELECT tabelas Staging Area
+###################################################
+select * from PJTELCO_SA_CSP --45
+
+select * from PJTELCO_SA_QUALIDADE --706.653
+
+select * from PJTELCO_SA_BANDA_LARGA --1.390.570
+
+
+select count(1) from PJTELCO_SA_CSP --45
+
+select count(1) from PJTELCO_SA_QUALIDADE --706.653
+
+select count(1) from PJTELCO_SA_BANDA_LARGA --1.390.570
+
+delete from PJTELCO_SA_CSP
+
+delete from PJTELCO_SA_QUALIDADE
+
+delete from PJTELCO_SA_BANDA_LARGA
+
+
+select count(1) from PJTELCO_SA_CSP
+union
+select count(1) from PJTELCO_SA_QUALIDADE --733.842
+union
+select count(1) from PJTELCO_SA_BANDA_LARGA

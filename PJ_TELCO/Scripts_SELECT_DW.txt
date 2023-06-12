@@ -1,0 +1,142 @@
+--ALTER SEQUENCE pjtelco_dwd_estado_id_estado_seq RESTART
+
+
+--FATO
+select * from PJTELCO_DWF_BANDA_LARGA
+select * from PJTELCO_DWF_QUALIDADE
+--DIMENSAO
+select * from PJTELCO_DWD_OPERADORA
+select * from PJTELCO_DWD_ESTADO 
+select * from PJTELCO_DWD_INTERNET
+select * from PJTELCO_DWD_MUNICIPIO
+select * from PJTELCO_DWD_VELOCIDADE
+select * from PJTELCO_DWD_SERVICO
+select * from PJTELCO_DWD_CALCULO
+select * from PJTELCO_DWD_INDICADOR
+select * from PJTELCO_DWD_TEMAS
+
+###########################################################
+# Cargas tabelas DIMENSAO
+###########################################################
+
+insert into PJTELCO_DWD_ESTADO (estado)
+select estado from PJTELCO_SA_QUALIDADE
+group by estado
+order by 1 asc
+
+insert into PJTELCO_DWD_OPERADORA (operadora, cnpj)
+select operadora,null from PJTELCO_SA_QUALIDADE
+group by operadora
+order by 1 asc
+
+insert into PJTELCO_DWD_INTERNET (tipo)
+select tipo from PJTELCO_SA_BANDA_LARGA
+group by tipo
+order by 1 asc
+
+insert into PJTELCO_DWD_VELOCIDADE (velocidade)
+select velocidade from PJTELCO_SA_BANDA_LARGA
+group by velocidade
+order by 1 asc
+
+insert into PJTELCO_DWD_SERVICO (servico)
+select servico from PJTELCO_SA_QUALIDADE
+group by servico
+order by 1 asc
+
+insert into PJTELCO_DWD_CALCULO (calculo)
+select calculo from PJTELCO_SA_QUALIDADE
+group by calculo
+order by 1 asc
+
+insert into PJ_DWD_INDICADOR (indicador,subindicador)
+select indicador,subindicador from PJTELCO_SA_QUALIDADE
+group by indicador,subindicador
+order by 1,2 asc
+
+insert into PJTELCO_DWD_TEMAS (tema,grupo)
+select tema,grupo from PJTELCO_SA_QUALIDADE
+group by tema,grupo
+order by 2,1 asc
+
+
+###########################################################
+# Ajustar cnpj tabela de operadoras.
+###########################################################
+
+select * from PJTELCO_SA_BANDA_LARGA
+where operadora = 'Sercomtel S.A. Telcomunicações'
+
+update PJTELCO_SA_BANDA_LARGA
+set operadora = 'SERCOMTEL'
+where operadora = 'Sercomtel S.A. Telcomunicações'
+
+
+
+select operadora,count(*) from PJTELCO_SA_BANDA_LARGA
+group by operadora
+
+select operadora,count(*) from PJTELCO_SA_QUALIDADE
+group by operadora
+
+
+create table temp_hugo as(
+select a.* from
+(select operadora,null from PJTELCO_SA_QUALIDADE 
+group by operadora
+union all
+select operadora,cnpj from PJTELCO_SA_banda_larga
+group by operadora,cnpj
+order by operadora asc)a)
+
+###########################################################
+# Cargas tabelas FATO
+###########################################################
+
+insert into PJTELCO_DWF_BANDA_LARGA (ano, mes, id_operadora, id_velocidade, Id_tipo,id_estado, id_municipio,acessos)
+select a.ano , a.mes ,ope.id_operadora , vel.id_velocidade ,inter.id_tipo, est.id_estado , mun.id_municipio, a.acessos 
+/*est.id_estado ,est.estado, a.estado, 
+       ope.id_operadora , ope.operadora,  ope.cnpj ,a.operadora, a.cnpj , 
+       mun.id_municipio , mun.municipio , mun.codigo_ibge , a.municipio ,a.codigo_ibge ,
+       vel.id_velocidade , vel.velocidade , a.velocidade ,
+       inter.id_tipo , inter.tipo , a.tipo */
+from pjtelco_sa_banda_larga a,
+     PJTELCO_DWD_OPERADORA ope,
+     PJTELCO_DWD_ESTADO est,
+     PJTELCO_DWD_MUNICIPIO mun,
+     PJTELCO_DWD_VELOCIDADE vel,
+     PJTELCO_DWD_INTERNET inter
+where a.operadora = ope.operadora 
+and a.estado = est.estado
+and a.municipio  = mun.municipio 
+and a.velocidade  = vel.velocidade 
+and a.tipo  = inter.tipo 
+
+
+insert into PJTELCO_DWF_QUALIDADE (ano,id_estado,id_operadora, id_servico,id_calculo,id_indicador,id_temas,nota,ranking)
+select a.ano , est.id_estado , oper.id_operadora , serv.id_servico , calc.id_calculo , indi.id_indicador , tema.id_temas , a.nota ,a.ranking  
+/*       serv.id_servico , serv.servico , a.servico ,
+       oper.id_operadora , oper.operadora , a.operadora ,
+       est.id_estado , est.estado , a.estado ,
+       calc.id_calculo , calc.calculo , a.calculo ,
+       indi.id_indicador ,indi.indicador, indi.subindicador,a.indicador, a.subindicador,
+       tema.id_temas , tema.tema, tema.grupo , a.tema , a.grupo*/
+from pjtelco_sa_qualidade a,
+     PJTELCO_DWD_SERVICO serv,
+     PJTELCO_DWD_OPERADORA oper,
+     PJTELCO_DWD_ESTADO est,
+     PJTELCO_DWD_CALCULO calc,
+     PJTELCO_DWD_INDICADOR indi,
+     PJTELCO_DWD_TEMAS tema
+where a.servico = serv.servico 
+and a.operadora =oper.operadora 
+and a.estado =est.estado 
+and a.calculo =calc.calculo 
+and (a.indicador, a.subindicador) = (indi.indicador, indi.subindicador)
+and (a.tema , a.grupo) = (tema.tema, tema.grupo)
+
+
+
+
+
+

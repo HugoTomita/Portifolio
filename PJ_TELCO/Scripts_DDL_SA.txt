@@ -1,0 +1,41 @@
+###################################################
+# Criacao tabelas Staging Area
+###################################################
+
+CREATE TABLE PJTELCO_SA_CSP (
+   CSP INT ,
+   OPERADORA VARCHAR ( 80 ) 
+);
+
+
+CREATE TABLE PJTELCO_SA_QUALIDADE (
+    SERVICO VARCHAR ( 30 ),
+	OPERADORA VARCHAR ( 60 ),
+	ESTADO VARCHAR ( 15 ),
+	CALCULO VARCHAR ( 30 ),
+	INDICADOR VARCHAR ( 100 ),
+	SUBINDICADOR VARCHAR ( 100 ),
+	ANO INT,
+	NOTA INT,
+	RANKING DECIMAL,
+	TEMA VARCHAR ( 120 ),
+	GRUPO VARCHAR ( 20 )
+);
+
+CREATE TABLE PJTELCO_SA_BANDA_LARGA (
+    ANO INT,
+	MES INT,
+	OPERADORA VARCHAR ( 100 ),
+	CNPJ VARCHAR ( 20 ),
+	VELOCIDADE DECIMAL,
+	ESTADO VARCHAR ( 5 ),
+	MUNICIPIO VARCHAR ( 50 ),
+	CODIGO_IBGE INT,
+	ACESSOS INT,
+	TIPO VARCHAR ( 20 )
+);
+
+###################################################
+# Criacao tabelas DW
+###################################################
+
