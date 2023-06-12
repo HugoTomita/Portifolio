@@ -6,12 +6,18 @@ Todas as informações se baseiam em informações de BANDA LARGA FIXA.
 Identificamos que o perfil de seleção realizado pela pesquisa possui uma distribuição proporcional por características, além disto, tivemos uma redução de 58,6% no total de respostas de 2020 a 2021.
 
 Quanto ao processo utilizado:
-1)	Foram extraídos os dados abertos do site da Anatel no formato CSV totalizando 2 arquivos, sendo 1 em relação a quantidade de acessos e serviços contratado contendo 1.390.570 linhas e outro arquivo contendo informações sobre pesquisa de qualidade com 706.653 linhas, todas em formato bruto.
-2)	Foi utilizado no processo inicial o SIPOC( suppliers, inputs, process, outputs e customers) para realizar o mapeamento marco da construção deste projeto.
-3)	Foi criado um processo ETL através da ferramenta PENTAHO para extrair os CSV bruto, transformar, tratar o arquivo e carregar as informações em uma área de staging através de processos de “transformação” e JOBs.
-4)	O próximo passo foi criar a modelagem dos dados utilizando a técnica SNOWFLAKE para criação das tabelas FATO E DIMENSAO no banco de dados POSTGRESQL, está carga foi realizada através de scripts SQL manualmente.
+1)	Foram extraídos os dados abertos do site da Anatel no formato CSV totalizando 2 arquivos, sendo 1 em relação a 
+quantidade de acessos e serviços contratado contendo 1.390.570 linhas e outro arquivo contendo informações sobre
+pesquisa de qualidade com 706.653 linhas, todas em formato bruto.
+2)	Foi utilizado no processo inicial o SIPOC( suppliers, inputs, process, outputs e customers) para realizar o
+mapeamento marco da construção deste projeto.
+3)	Foi criado um processo ETL através da ferramenta PENTAHO para extrair os CSV bruto, transformar, tratar
+o arquivo e carregar as informações em uma área de staging através de processos de “transformação” e JOBs.
+4)	O próximo passo foi criar a modelagem dos dados utilizando a técnica STAR SCHEMA para criação das 
+tabelas FATO E DIMENSAO no banco de dados POSTGRESQL, está carga foi realizada através de scripts SQL manualmente.
 5)	Realizado validação das informações carregadas no DB através de querys.
-6)	Iniciado a carga das informações no Power BI, não houve necessidade de transformação das informações, criado relacionamentos entre as tabelas e algumas medidas já identificadas como necessária.
+6)	Iniciado a carga das informações no Power BI, não houve necessidade de transformação das informações, criado
+relacionamentos entre as tabelas e algumas medidas já identificadas como necessária.
 7)	Criação dos gráficos e finalizado com tema do layout dos painéis.
 
 Conclusão: 
@@ -25,7 +31,7 @@ TECNICAS, METODOLOGIAS E FERRAMENTAS UTILIZADAS:
 •	SIPOC 
 •	ETL
 •	PENTAHO
-•	SNOWFLAKE(técnica)
+•	STAR SCHEMA(técnica)
 •	POSTGRESQL
 •	SQL
 •	POWER BI
