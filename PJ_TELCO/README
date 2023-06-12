@@ -1,0 +1,31 @@
+PJ TELCO
+
+Objetivo deste projeto foi levantar informações sobre a qualidade de atendimento das operadoras e qualidade do serviço prestado no período de 2021 e 2022 pôs-pandemia.
+Foi levantado também o marketshare a nível nacional e quais velocidades mais contratadas por operadora no ano de 2020, primeiro ano de pandemia.
+Todas as informações se baseiam em informações de BANDA LARGA FIXA.
+Identificamos que o perfil de seleção realizado pela pesquisa possui uma distribuição proporcional por características, além disto, tivemos uma redução de 58,6% no total de respostas de 2020 a 2021.
+
+Quanto ao processo utilizado:
+1)	Foram extraídos os dados abertos do site da Anatel no formato CSV totalizando 2 arquivos, sendo 1 em relação a quantidade de acessos e serviços contratado contendo 1.390.570 linhas e outro arquivo contendo informações sobre pesquisa de qualidade com 706.653 linhas, todas em formato bruto.
+2)	Foi utilizado no processo inicial o SIPOC( suppliers, inputs, process, outputs e customers) para realizar o mapeamento marco da construção deste projeto.
+3)	Foi criado um processo ETL através da ferramenta PENTAHO para extrair os CSV bruto, transformar, tratar o arquivo e carregar as informações em uma área de staging através de processos de “transformação” e JOBs.
+4)	O próximo passo foi criar a modelagem dos dados utilizando a técnica SNOWFLAKE para criação das tabelas FATO E DIMENSAO no banco de dados POSTGRESQL, está carga foi realizada através de scripts SQL manualmente.
+5)	Realizado validação das informações carregadas no DB através de querys.
+6)	Iniciado a carga das informações no Power BI, não houve necessidade de transformação das informações, criado relacionamentos entre as tabelas e algumas medidas já identificadas como necessária.
+7)	Criação dos gráficos e finalizado com tema do layout dos painéis.
+
+Conclusão: 
+Em relação a qualidade do atendimento pos-pandemia, tivemos apenas 3 dos 46 itens totais com uma redução na nota de 2021 para 2022, representando 6,5% dos itens com inclinação negativa, para os itens com inclinação positiva, tivemos 17,3%.
+Quanto a qualidade do funcionamento do serviço, analisamos somente itens positivos com destaque para a “Rapidez no envio de fotos/vídeos por app de mensagens /rede sociais” com 66,6% das operadoras melhorando sua nota.
+Em 2020 tivemos a operadora Vivo com uma tendência leve de queda na quantidade de acesso em 2020, as demais tivemos um leve crescimento.
+A velocidade com maior índice de contratação em 2020 para as top 6 foram velocidade acima de 100MB.
+Insight: Após verificar a informação gerada, notamos que é possível avançar na análise. Poderíamos compara e verificar se existe alguma relação direta entre “velocidades contratadas X qualidade de atendimento X Qualidade funcionamento X Qtd acessos”.
+
+TECNICAS, METODOLOGIAS E FERRAMENTAS UTILIZADAS:
+•	SIPOC 
+•	ETL
+•	PENTAHO
+•	SNOWFLAKE(técnica)
+•	POSTGRESQL
+•	SQL
+•	POWER BI
