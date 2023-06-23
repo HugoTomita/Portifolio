@@ -1,0 +1,16 @@
+
+PJ_YOUTUBE_PODCAST-PYTHON_API_EXTRACT.ipynb
+  Notebook em python para extrair as info do youtube pela API e gerar arquivo de saida json e csv
+
+PJ_YOUTUBE_PODCAST-DATABRICKS.ipynb
+  Notebook do databricks para carga do arrquivo json em tabela e criacao de graficos atraves dos sqls. Criado painel com os graficos.
+
+O que foi utilizado?
+1- Extracao de dados API
+2- Carga dos dados em data frame utilizando python
+3- Tratamento de dados utilizando python
+4- Output dos arquivos Json e csv para carregar no DATA LAKE do databricks
+5- Carga de arquivos em tabelas  SQL  no databricks 
+6- Analise de dados
+7- Criacao de visualizacoes destas analises
+8- Criacao do painel para visualização
