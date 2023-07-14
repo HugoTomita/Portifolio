@@ -1,0 +1,19 @@
+
+OBJETIVO
+Criar Dash para analise das palavreas-chave das vagas que me chamaram atenção.
+
+ESCOPO
+Realizar a extração de dados manualmente de cada vaga do Linkedin.
+Esta atividade será realizada atraves de um copiar a descição da vaga e colar em um TXT.
+Apos isto deverá ser criado um processo para ler este arquivo e inserir em uma base de dados ja tratados.
+E por fim, será apresentado em uma ferramenta de visualização.
+Esta criação deverá ser realizada de forma rapida e objetiva.
+Pois sera utilizado poucas vezes.
+Apos será necessario criar um processo com a coleta das informacoes do LINKEDIN de forma automatizada.
+
+PJ FINAL:
+
+Input será um arquivo txt com a descrição da vaga, que será tratado e carregado atraves do PDI PENTAHO em uma base de dados POSTGRESQL.
+Apos as inserções, a visualização foi realizada no power bi conectando diretamente da base de dados.
+
+
