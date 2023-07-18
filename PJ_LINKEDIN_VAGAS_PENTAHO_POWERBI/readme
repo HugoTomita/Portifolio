@@ -1,0 +1,10 @@
+
+OBJETIVO
+Criar Dash para analise das vagas disponiveis no linkedin.
+
+PJ:
+Realizar a extração de dados do linkedin atraves da aplicaçao octoparse.
+Output da extração será um arquivo JSON com todas as informacoes.
+Sera tratado e carregado para o banco de dados Postgresql atraves do PDI PENTAHO.
+E por fim, será apresentado em uma ferramenta de visualização, no caso o POWER BI Conectando diretamente a BASE DE DADOS.
+
