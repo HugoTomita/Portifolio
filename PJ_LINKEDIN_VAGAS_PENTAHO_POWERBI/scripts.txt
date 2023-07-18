@@ -1,0 +1,50 @@
+
+
+select * from LINKEDIN_VAGAS
+
+select busca_keyword, busca_localizacao, data_insert, count(*) from LINKEDIN_VAGAS
+group by busca_keyword, busca_localizacao, data_insert
+
+
+
+CREATE TABLE IF NOT EXISTS LINKEDIN_VAGAS (
+BUSCA_KEYWORD VARCHAR ( 50 ) NOT null,
+BUSCA_LOCALIZACAO VARCHAR ( 50 ) NOT null,
+VAGA VARCHAR ( 200 ) ,
+LINK_VAGA VARCHAR ( 500 ) ,
+EMPRESA VARCHAR ( 100 ) ,
+LINK_EEMPRESA VARCHAR ( 500 ) ,
+LOCALIZACAO_VAGA VARCHAR ( 100 ) ,
+POST_TIME VARCHAR ( 100 ) ,
+CANDIDATOS VARCHAR ( 100 ) ,
+DESCRICAO TEXT ,
+SENIORIDADE VARCHAR ( 100 ) ,
+TIPO_VAGA VARCHAR ( 200 ) ,
+AREA_VAGA VARCHAR ( 200 ) ,
+SETOR_VAGA VARCHAR ( 200 ) ,
+data_insert date
+);
+
+
+
+
+select busca_keyword, busca_localizacao, data_insert, count(*) from LINKEDIN_VAGAS
+group by busca_keyword, busca_localizacao, data_insert
+
+
+select area_vaga, setor_vaga, count(*) from LINKEDIN_VAGAS
+group by area_vaga, setor_vaga
+order by 3 desc
+
+select candidatos, post_time, count(*) from LINKEDIN_VAGAS
+where (post_time not like '%M%')
+or ( post_time not like  '%SEMANA%')
+group by candidatos, post_time
+
+select * from LINKEDIN_VAGAS
+where descricao like '%CONTROLM%'
+
+
+
+
+
